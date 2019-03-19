@@ -1,37 +1,31 @@
 ion-content{
-  --background: url("../../theme/background.jpg") center / 100% 100% no-repeat;
+    --background: url("../../theme/background.jpg") center / 100% 100% no-repeat;
 }
 .log-out-content{
-  text-align: end;
-  
+    text-align: end;
 }
 .log-out-btn{
-  --background: #989aa2;
-  --background-activated: #f04141;
+    --background: #989aa2;
+    --background-activated: #f04141;
 }
-
-  ion-card {
-    position: relative;
-    text-align: center;
-    size:100%;
+page-card-background {
+    ion-card {
+      position: relative;
+      text-align: center;
+    }
+    .card-title {
+      position: absolute;
+      top: 36%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #fff;
+    }
+    .card-subtitle {
+      font-size: 1.0em;
+      position: absolute;
+      top: 52%;
+      width: 100%;
+      color: #fff;
+    }
   }
-  .card-title {
-    position: absolute;
-    top: 36%;
-    font-size: 2.0em;
-    width: 100%;
-    font-weight: bold;
-    color: rgb(8, 8, 8);
-  }
-  .card-subtitle {
-    font-size: 1.0em;
-    position: absolute;
-    top: 52%;
-    width: 100%;
-    color: #fff;
-  }
-  .error {
-
-    top: 50%;
-    position: absolute;}
-    

@@ -1,17 +1,15 @@
-<ion-content padding class="ion-content">
-   
-    <img class="logo" src="http://pngimg.com/uploads/intel/intel_PNG15.png" />
-    <div padding>
-      <ion-item>
-         <ion-input type="email" placeholder="e-mail" [(ngModel)]="mail"  ></ion-input>
-      </ion-item>
-      <ion-item>
-         <ion-input type="password" placeholder="mot de passe" [(ngModel)]="paswd"  ></ion-input>
-      </ion-item>
-      <ion-button block outline (click)="login(user)"  color="light" class="login-button"	>Connexion</ion-button>
+<ion-content>
+  <form class="form-content" (ngSubmit)="onGoToHomePage()">
+    <div class="input-cl2">
+      <ion-input class="ion-input" [(ngModel)]="mail" name="mail" type="E-Mail" required="true" placeholder="E-Mail">
+      </ion-input>
     </div>
-   
-  </ion-content>
- 
-
-
+    <div class="input-cl2">
+      <ion-input class="ion-input" [(ngModel)]="paswd" name="paswd" type="password" required="true" maxlength="30"
+        placeholder="Password"></ion-input>
+    </div>
+    <div class="btn-cl1">
+      <ion-button class="ion-button" shape="round" type="submit" color="primary">Connecter</ion-button>
+    </div>
+  </form>
+</ion-content>

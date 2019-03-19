@@ -7,7 +7,7 @@ import {UserService} from '../user.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  public userUid:string;
+  public userUid:string
   constructor(
     private router: Router,
     private user:UserService
@@ -19,16 +19,8 @@ export class HomePage implements OnInit {
   onGoToHomePage(){
   }
   onLogOut(){
+    
     this.router.navigate(['/accueil'])
   }
 
-
-
-  cardTapped(card) {
-    this.router.navigate(['/users'])
-  }
-
-  cardTapped1(card) {
-    this.router.navigate(['/unite-medical'])
-  }
 }

@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { MaterielPage } from './materiel.page';
-import { IonicSelectableModule } from 'ionic-selectable';
+
 const routes: Routes = [
   {
     path: '',
@@ -19,7 +19,6 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    IonicSelectableModule,
     RouterModule.forChild(routes)
   ],
   declarations: [MaterielPage]

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-interface user {
-  userUid:string;
+interface user{
+  userUid:string
 }
 
 @Injectable({
@@ -9,13 +9,13 @@ interface user {
 })
 export class UserService {
 
-  private user: user
+  private user:user
   constructor() { }
 
   setArticle(user:user){
     this.user=user
   }
   getUID(){
-    return this.user.userUid ;
+    return this.user.userUid
   }
 }
