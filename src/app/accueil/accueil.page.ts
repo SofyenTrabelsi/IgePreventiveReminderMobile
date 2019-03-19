@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { firestore } from 'firebase/app'
+import {AngularFireAuth} from 'angularfire2/auth';
+import {AngularFireDatabase} from 'angularfire2/database';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { UserService } from '../user.service';
@@ -17,7 +16,7 @@ export class AccueilPage implements OnInit {
   constructor(
     private user: UserService,
     private afAuth: AngularFireAuth,
-    private afStore: AngularFirestore,
+    private afDataBase: AngularFireDatabase,
     private toastController: ToastController,
     private alert: AlertController,
     private router: Router,
@@ -46,12 +45,12 @@ export class AccueilPage implements OnInit {
       this.user.setArticle({
         userUid: res.user.uid
       })
-      const e_mail=this.mail
-      const mot_de_passe=this.paswd
-      this.afStore.doc(`users/${res.user.uid}`).set({
-        e_mail,
-        mot_de_passe
-      })
+      // const e_mail=this.mail
+      // const mot_de_passe=this.paswd
+      // this.afStore.doc(`users/${res.user.uid}`).set({
+      //   e_mail,
+      //   mot_de_passe
+      // })
       this.showAlert("Connexion Réussite","Vous êtes maintenant connecté!")
       this.router.navigate(['/home'])
     }
