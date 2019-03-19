@@ -1,12 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+<ion-content>
+  <div class="log-out-content">
+      <ion-button class="log-out-btn"  (click)="onLogOut()" size="small" shape="round" type="submit" vertical="bottom">
+        <ion-icon name="log-out"></ion-icon>
+      </ion-button>
+    </div>
+    
+<ion-card  (click)="cardTapped(card)" class="error">
+  <img src="../../assets/doct.jpg" />
+  <div class="card-title">users</div>
+  <div class="card-subtitle"></div>
+</ion-card>
+
+<ion-card  (click)="cardTapped1(card)">
+  <img src="../../assets/hospital11.jpg" />
+  <div class="card-title">Unite medical</div>
+  <div class="card-subtitle"></div>
+</ion-card>
 </ion-content>

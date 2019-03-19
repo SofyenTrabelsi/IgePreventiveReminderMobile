@@ -1,0 +1,17 @@
+<ion-content padding class="ion-content">
+   
+    <img class="logo" src="http://pngimg.com/uploads/intel/intel_PNG15.png" />
+    <div padding>
+      <ion-item>
+         <ion-input type="email" placeholder="e-mail" [(ngModel)]="mail"  ></ion-input>
+      </ion-item>
+      <ion-item>
+         <ion-input type="password" placeholder="mot de passe" [(ngModel)]="paswd"  ></ion-input>
+      </ion-item>
+      <ion-button block outline (click)="login(user)"  color="light" class="login-button"	>Connexion</ion-button>
+    </div>
+   
+  </ion-content>
+ 
+
+

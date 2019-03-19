@@ -1,0 +1,64 @@
+<ion-content padding>
+
+<div >
+    <ion-thumbnail >
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-thumbnail>
+  
+</div>
+
+
+  <ion-item>
+   
+    <ion-input placeholder="Type"
+       type="text"
+      
+       [(ngModel)]="Type"></ion-input>
+  </ion-item>
+
+
+
+  <ion-item>
+
+    <ion-input placeholder="Nom"
+       type="text"
+       
+       [(ngModel)]="Nom"></ion-input>
+  </ion-item>
+
+
+
+  <ion-item>
+   <ion-input  placeholder="Gouvernoat"
+       type="text"
+       
+       [(ngModel)]="Gouvernoat"></ion-input>
+  </ion-item>
+
+
+
+  <ion-item>
+    
+    <ion-label>Ville</ion-label>
+    <ion-select value="ville" okText="Okay" cancelText="Dismiss">
+      <ion-select-option value="Monastir">Monastir</ion-select-option>
+      <ion-select-option value="sousse">sousse</ion-select-option>
+      <ion-select-option value="tunis">tunis</ion-select-option>
+      <ion-select-option value="nabel">nabel</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+
+  <ion-item>
+    
+    <ion-input placeholder="Code Postale"
+       type="text"
+      
+       [(ngModel)]="Postale"></ion-input>
+  </ion-item>
+
+
+
+  <ion-button  expand="full" color="primary"  (click)="addItem(item)">Add</ion-button>
+      
+</ion-content>
