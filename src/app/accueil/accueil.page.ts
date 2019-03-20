@@ -67,10 +67,20 @@ export class AccueilPage implements OnInit {
       a.forEach(y => {
         y.forEach(x => {
           if (x.email == this.mail && x.pwd == this.paswd) {
-            this.user.setUser({
-              userKey: x.key,
-              userType: x.type
-            })
+            if(x.type=="Admin"){
+              this.user.setUser({
+                userKey: x.key,
+                userType: x.type,
+                uniteMedicalKey:null
+              })
+            }
+            else{
+              this.user.setUser({
+                userKey: x.key,
+                userType: x.type,
+                uniteMedicalKey:x.uniteMedical.key
+              })
+            }
             this.verifyPassword()
           }
         })

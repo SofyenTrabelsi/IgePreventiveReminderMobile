@@ -1,11 +1,32 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>home1</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
-  <ion-button  (click)="addToDateBase()" size="large" shape="round" type="submit">
-    <ion-icon name="add"></ion-icon>
-  </ion-button>
-</ion-content>
+<ion-content>
+    <ion-item-sliding *ngFor="let i of data">
+      <ion-item (click)="comosants(i)">
+        <ion-row class="row">
+          <h2>{{i.type}}</h2>
+        </ion-row>
+        <ion-row class="row">
+          <h5>{{i.nom}}</h5>
+        </ion-row>
+        <ion-row class="row">
+          <p>{{i.reference}} • {{i.dateMaintenance}}</p>
+        </ion-row>
+      </ion-item>
+      <ion-item-options side="end">
+        <button ion-button color="primary" (click)="modifier(i)">
+          <ion-icon name="create"></ion-icon>
+          Modifier
+        </button>
+        <button ion-button color="danger" (click)="supprimer(i)">
+          <ion-icon name="trash"></ion-icon>
+          Supprimer
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  
+    <ion-fab vertical="bottom" horizontal="end" color="primary">
+      <ion-fab-button (click)="ajouter()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>&nbsp;
+  
+  </ion-content>

@@ -27,11 +27,17 @@ export class UniteMedicalPage implements OnInit {
       this.data=y
     })
   }
-
   comosants(i) {
     this.uniteMedical.setUniteMedical({
       uniteMedicalKey:i.key
     })
     this.router.navigate(['/materiel'])
+  }
+  modifier(i){
+
+  }
+  async supprimer(i){
+    const b = await this.afDataBase.list('Unité Medical').remove(i.key)
+    this.getData()
   }
 }

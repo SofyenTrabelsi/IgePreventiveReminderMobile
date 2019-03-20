@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { AlertController } from '@ionic/angular';
+import { UserService } from '../user.service';
+import { Composant } from '../Entities/Composant';
 
 @Component({
   selector: 'app-home1',
@@ -9,29 +11,22 @@ import { AlertController } from '@ionic/angular';
 })
 export class Home1Page implements OnInit {
 
+  public data: {}
   constructor(
-    private alert: AlertController,
-    private afd: AngularFireDatabase
+    private router: Router,
+    private user: UserService,
+    private afDataBase: AngularFireDatabase,
   ) { }
 
   ngOnInit() {
+    this.getData();
   }
-  async showAlert(header: string, message: any) {
-    const alert = await this.alert.create({
-      header,
-      message,
-      buttons: ["OK"]
+  async getData() {
+    const b = await this.afDataBase.list<Composant>('Composants').valueChanges()
+    b.forEach(y => {
+      this.data = y.filter((item) => {
+        return item.uniteMedical.key == this.user.getUMKey()
+      });
     })
-    await alert.present()
   }
-  addToDateBase() {
-    const id=this.afd.list('/shoppingItems/').push({
-      name: "sdfhjkl",
-      add: "hjkl"
-    });
-    this.afd.list('/shoppingItems/').update("-LZuJDRD9pYfVybO5qOw",{
-      name: "sofyen",
-      add: "salah"
-    })
-    }
 }
