@@ -8,6 +8,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 
+//ionic-selectable
+
 
 //service Configuration
 import { UserService} from './user.service';

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {AngularFireAuth} from 'angularfire2/auth';
-import {AngularFireDatabase} from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { UserService } from '../user.service';
+import { Utilisateur } from '../Entities/Utilisateur';
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.page.html',
@@ -39,23 +40,44 @@ export class AccueilPage implements OnInit {
     })
     await alert.present()
   }
+  async verifyPassword() {
+    if (this.user.getKey() != null) {
+      try {
+        const res = await this.afAuth.auth.signInWithEmailAndPassword(this.mail, this.paswd)
+        this.showAlert("Connexion Réussite", "Vous êtes maintenant connecté!")
+        console.log(this.user.getKey()+"    "+this.user.getType())
+        if (this.user.getType() == "Admin") {
+          this.router.navigate(['/home'])
+        }
+        else {
+          this.router.navigate(['/home1'])
+        }
+      }
+      catch (err) {
+        this.toastt(err.message)
+      }
+    }
+    else {
+      this.showAlert("Identification échoué", "Vous n'êtes pas un vrai utilisateur!")
+    }
+  }
   async onGoToHomePage() {
     try {
-      const res = await this.afAuth.auth.signInWithEmailAndPassword(this.mail, this.paswd)
-      this.user.setArticle({
-        userUid: res.user.uid
+      const a = await this.afDataBase.list<Utilisateur>('Utilisateurs').valueChanges()
+      a.forEach(y => {
+        y.forEach(x => {
+          if (x.email == this.mail && x.pwd == this.paswd) {
+            this.user.setUser({
+              userKey: x.key,
+              userType: x.type
+            })
+            this.verifyPassword()
+          }
+        })
       })
-      // const e_mail=this.mail
-      // const mot_de_passe=this.paswd
-      // this.afStore.doc(`users/${res.user.uid}`).set({
-      //   e_mail,
-      //   mot_de_passe
-      // })
-      this.showAlert("Connexion Réussite","Vous êtes maintenant connecté!")
-      this.router.navigate(['/home'])
     }
     catch (err) {
-      this.toastt(err.message)
+      this.toastt("sfss")
     }
   }
   onExit() {

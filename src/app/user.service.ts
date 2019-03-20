@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
 interface user{
-  userUid:string
+  userKey:string
+  userType:string
 }
 
 @Injectable({
@@ -12,10 +13,13 @@ export class UserService {
   private user:user
   constructor() { }
 
-  setArticle(user:user){
+  setUser(user:user){
     this.user=user
   }
-  getUID(){
-    return this.user.userUid
+  getKey(){
+    return this.user.userKey
+  }
+  getType(){
+    return this.user.userType
   }
 }

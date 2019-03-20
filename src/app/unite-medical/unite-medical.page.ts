@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { UserService } from '../user.service';
+import { UniteMedical } from '../Entities/UniteMedical';
 
 @Component({
   selector: 'app-unite-medical',
@@ -7,9 +11,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UniteMedicalPage implements OnInit {
 
-  constructor() { }
+  public data:UniteMedical[]
+  constructor(
+    private router: Router,
+    private user: UserService,
+    private afDataBase:AngularFireDatabase,
+  ) { }
 
   ngOnInit() {
+    this.getData();
+  }
+  getData(){
+    const b=this.afDataBase.list<UniteMedical>('Unité Medical').valueChanges()
+            b.forEach(y=>{
+              this.data=y
+            })
   }
 
 }
