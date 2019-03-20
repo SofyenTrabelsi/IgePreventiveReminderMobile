@@ -8,11 +8,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 
-//ionic-selectable
-
-
 //service Configuration
-import { UserService} from './user.service';
+import { UserService } from './user.service';
+import { UniteMedicalService } from './unite-medical.service';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -33,6 +31,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule],
   providers: [
     UserService,
+    UniteMedicalService,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

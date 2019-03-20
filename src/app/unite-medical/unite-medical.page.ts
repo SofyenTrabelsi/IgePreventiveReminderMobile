@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { UserService } from '../user.service';
+import { UniteMedicalService } from '../unite-medical.service';
 import { UniteMedical } from '../Entities/UniteMedical';
 
 @Component({
@@ -11,21 +11,27 @@ import { UniteMedical } from '../Entities/UniteMedical';
 })
 export class UniteMedicalPage implements OnInit {
 
-  public data:UniteMedical[]
+  public data:  Array<UniteMedical>
   constructor(
     private router: Router,
-    private user: UserService,
-    private afDataBase:AngularFireDatabase,
+    private uniteMedical: UniteMedicalService,
+    private afDataBase: AngularFireDatabase,
   ) { }
 
   ngOnInit() {
     this.getData();
   }
-  getData(){
-    const b=this.afDataBase.list<UniteMedical>('Unité Medical').valueChanges()
-            b.forEach(y=>{
-              this.data=y
-            })
+  async getData() {
+    const b = await this.afDataBase.list<UniteMedical>('Unité Medical').valueChanges()
+    b.forEach(y => {
+      this.data=y
+    })
   }
 
+  comosants(i) {
+    this.uniteMedical.setUniteMedical({
+      uniteMedicalKey:i.key
+    })
+    this.router.navigate(['/materiel'])
+  }
 }

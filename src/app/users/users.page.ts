@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { UserService } from '../user.service';
+import { Utilisateur } from '../Entities/Utilisateur';
+import { UniteMedical } from '../Entities/UniteMedical';
 
 @Component({
   selector: 'app-users',
@@ -7,9 +12,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersPage implements OnInit {
 
-  constructor() { }
+  public data: Utilisateur[]
+  constructor(
+    private router: Router,
+    private user: UserService,
+    private afDataBase: AngularFireDatabase,
+  ) { }
 
   ngOnInit() {
+    this.getData();
+  }
+  async getData() {
+    const b = await this.afDataBase.list<Utilisateur>('Utilisateurs').valueChanges()
+    b.forEach(y => {
+      this.data = y
+    })
   }
 
 }
