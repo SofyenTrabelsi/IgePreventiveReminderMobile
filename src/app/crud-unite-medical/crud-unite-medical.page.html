@@ -11,15 +11,15 @@
     <ion-input placeholder="Nom" type="text" [(ngModel)]="Nom"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input placeholder="Gouvernoat" type="text" [(ngModel)]="Gouvernoat"></ion-input>
+    <ion-label>Gouvernorat</ion-label>
+    <ion-select okText="Confirmer" cancelText="Cancel" (ionChange)="onChange($event)">
+      <ion-select-option *ngFor="let i of gouvs">{{i}}</ion-select-option>
+    </ion-select>
   </ion-item>
   <ion-item>
     <ion-label>Ville</ion-label>
-    <ion-select value="ville" okText="Confirmer" cancelText="Cancel">
-      <ion-select-option value="Monastir">Monastir</ion-select-option>
-      <ion-select-option value="sousse">sousse</ion-select-option>
-      <ion-select-option value="tunis">tunis</ion-select-option>
-      <ion-select-option value="nabel">nabel</ion-select-option>
+    <ion-select  okText="Confirmer" cancelText="Cancel">
+      <ion-select-option *ngFor="let j of villes">{{j}}</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>
