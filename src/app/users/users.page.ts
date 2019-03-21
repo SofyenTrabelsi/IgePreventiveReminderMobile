@@ -28,5 +28,16 @@ export class UsersPage implements OnInit {
       this.data = y
     })
   }
-
+  modifier(i){
+    this.user.setUser({
+      userKey:i.key,
+      userType:i.type,
+      uniteMedicalKey:null
+    })
+    this.router.navigate(['/crud-user'])
+  }
+  async supprimer(i){
+    const b = await this.afDataBase.list('Utilisateurs').remove(i.key)
+    this.getData()
+  }
 }

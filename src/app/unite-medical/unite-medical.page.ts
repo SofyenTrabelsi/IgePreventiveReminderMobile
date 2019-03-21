@@ -34,7 +34,10 @@ export class UniteMedicalPage implements OnInit {
     this.router.navigate(['/materiel'])
   }
   modifier(i){
-
+    this.uniteMedical.setUniteMedical({
+      uniteMedicalKey:i.key
+    })
+    this.router.navigate(['/crud-unite-medical'])
   }
   async supprimer(i){
     const b = await this.afDataBase.list('Unité Medical').remove(i.key)
