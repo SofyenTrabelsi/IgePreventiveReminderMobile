@@ -43,16 +43,22 @@ export class CrudUniteMedicalPage implements OnInit {
   public Tunis = ["Bab El Bhar", "Bab Souika", "Carthage", "Cité El Khadra", "Djebel Jelloud", "El Kabaria", "El Menzah", "El Omrane", "El Omrane supérieur", "El Ouardia", "Ettahrir", "Ezzouhour", "Hraïria", "La Goulette", "La Marsa", "Le Bardo", "Le Kram", "Médina", "Séjoumi", "Sidi El Béchir", "Sidi Hassine"];
   public Zaghouan = ["Bir Mcherga", "El Fahs", "Nadhour", "Saouaf", "Zaghouan", "Zriba"];
   public villes = []
-  public gouv: string;
+  public type:string
+  public nom:string
+  public gouv:string
+  public ville:string
+  public codePostal:string
   public data: Array<UniteMedical>
+
   constructor(
     private router: Router,
+    private uniteM: UniteMedical,
     private uniteMedical: UniteMedicalService,
     private afDataBase: AngularFireDatabase,
   ) { }
 
   ngOnInit() {
-    this.getData();
+    //this.getData();
   }
   async getData() {
     const b = await this.afDataBase.list<UniteMedical>('Unité Medical').valueChanges()
@@ -61,6 +67,14 @@ export class CrudUniteMedicalPage implements OnInit {
         return item.key == this.uniteMedical.getKey()
       });
     })
+  }
+  ajouter(){
+    this.uniteM.constructorS(this.type,this.nom,this.gouv,this.ville,this.codePostal)
+    console.log( this.uniteM.type)
+    console.log( this.uniteM.nom)
+    console.log( this.uniteM.gouv)
+    console.log( this.uniteM.ville)
+    console.log( this.uniteM.codePostal)
   }
   onChange($event) {
     switch ($event.target.value) {

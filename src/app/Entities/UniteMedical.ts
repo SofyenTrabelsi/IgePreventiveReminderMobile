@@ -10,4 +10,11 @@ export class UniteMedical {
 
     constructor() {
     }
+    constructorS(type: string, nom: string, gouv: string, ville: string, codePostal: string) {
+        this.type = type;
+        this.nom = nom;
+        this.gouv = gouv;
+        this.ville = ville;
+        this.codePostal = codePostal
+    }
 }

@@ -4,27 +4,30 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
-  <ion-item>
-    <ion-input placeholder="Type" type="text" [(ngModel)]="Type"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input placeholder="Nom" type="text" [(ngModel)]="Nom"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Gouvernorat</ion-label>
-    <ion-select okText="Confirmer" cancelText="Cancel" (ionChange)="onChange($event)">
-      <ion-select-option *ngFor="let i of gouvs">{{i}}</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-label>Ville</ion-label>
-    <ion-select  okText="Confirmer" cancelText="Cancel">
-      <ion-select-option *ngFor="let j of villes">{{j}}</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-input placeholder="Code Postale" type="text" [(ngModel)]="Postale"></ion-input>
-  </ion-item>
-  <ion-button expand="full" color="primary" (click)="ajouter()">Ajouter</ion-button>
-
+  <form (ngSubmit)="ajouter()">
+    <ion-item>
+      <ion-input placeholder="Type" type="text" [(ngModel)]="type" name="type" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Nom" type="text" [(ngModel)]="nom" name="nom" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Gouvernorat</ion-label>
+      <ion-select okText="Confirmer" cancelText="Cancel" (ionChange)="onChange($event)" [(ngModel)]="gouv" name="gouv"
+        required>
+        <ion-select-option *ngFor="let i of gouvs">{{i}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Ville</ion-label>
+      <ion-select okText="Confirmer" cancelText="Cancel" [(ngModel)]="ville" name="ville" required>
+        <ion-select-option *ngFor="let j of villes">{{j}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Code Postale" type="number" maxlength="4" required [(ngModel)]="codePostal"
+        name="codePostal"></ion-input>
+    </ion-item>
+    <ion-button expand="full" color="primary" type="submit">Ajouter</ion-button>
+  </form>
 </ion-content>

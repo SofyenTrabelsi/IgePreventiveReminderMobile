@@ -11,6 +11,7 @@ import { AngularFireModule } from 'angularfire2';
 //service Configuration
 import { UserService } from './user.service';
 import { UniteMedicalService } from './unite-medical.service';
+import {UniteMedical} from './Entities/UniteMedical'
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -32,6 +33,7 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [
     UserService,
     UniteMedicalService,
+    UniteMedical,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
