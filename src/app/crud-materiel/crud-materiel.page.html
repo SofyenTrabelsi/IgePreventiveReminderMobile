@@ -5,23 +5,19 @@
 </ion-header>
 
 <ion-content padding>
+  <h2 style="text-align:center">{{title}}</h2>
   <ion-item>
-    <ion-label>Type</ion-label>
-    <ion-select value="Type" okText="Okay" cancelText="Dismiss">
-      <ion-select-option value="Monastir">Monastir</ion-select-option>
-      <ion-select-option value="sousse">sousse</ion-select-option>
-      <ion-select-option value="tunis">tunis</ion-select-option>
-      <ion-select-option value="nabel">nabel</ion-select-option>
-    </ion-select>
+    <ion-input placeholder="Type" type="text" [(ngModel)]="type" name="type" required></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input placeholder="Nom" type="text" [(ngModel)]="nom"></ion-input>
+    <ion-input placeholder="Nom" type="text" [(ngModel)]="nom" name="nom" required></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input placeholder="Réference" type="text" [(ngModel)]="Reference"></ion-input>
+    <ion-input placeholder="Réference" type="text" [(ngModel)]="reference" name="reference" required></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input placeholder="Date de maintenance" type="date" [(ngModel)]="ddm"></ion-input>
+    <ion-input placeholder="Date de maintenance" type="date" [(ngModel)]="dateMaintenance" name="dateMaintenance"
+      required></ion-input>
   </ion-item>
   <ion-button expand="full" color="primary" (click)="ajouter()">Ajouter</ion-button>
 </ion-content>

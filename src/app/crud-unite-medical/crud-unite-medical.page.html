@@ -4,6 +4,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
+  <h2 style="text-align:center">{{title}}</h2>
   <form (ngSubmit)="ajouter()">
     <ion-item>
       <ion-input placeholder="Type" type="text" [(ngModel)]="type" name="type" required></ion-input>

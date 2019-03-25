@@ -3,20 +3,21 @@
     <ion-title>crudUser</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content padding>
+  <h2 style="text-align:center">{{title}}</h2>
   <ion-item>
-    <ion-input placeholder="Email" type="text" [(ngModel)]="Email"></ion-input>
+    <ion-input placeholder="Email" type="text" [(ngModel)]="email" name="email" required></ion-input>></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input placeholder="Mot de passe " type="text" [(ngModel)]="mdp"></ion-input>
+    <ion-input placeholder="Mot de passe " type="text" [(ngModel)]="mdp" name="pwd" required></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input placeholder="poste" type="text" [(ngModel)]="poste"></ion-input>
+    <ion-input placeholder="poste" type="text" [(ngModel)]="poste" name="poste" required></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input placeholder="fonctionnalité" type="text" [(ngModel)]="fonctionnalite"></ion-input>
+    <ion-input placeholder="fonctionnalité" type="text" [(ngModel)]="fonctionnalite" name="type" required></ion-input>
   </ion-item>
 
   <ion-item>

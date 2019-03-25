@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { UniteMedicalService } from '../unite-medical.service';
 import { UniteMedical } from '../Entities/UniteMedical';
@@ -43,38 +45,63 @@ export class CrudUniteMedicalPage implements OnInit {
   public Tunis = ["Bab El Bhar", "Bab Souika", "Carthage", "Cité El Khadra", "Djebel Jelloud", "El Kabaria", "El Menzah", "El Omrane", "El Omrane supérieur", "El Ouardia", "Ettahrir", "Ezzouhour", "Hraïria", "La Goulette", "La Marsa", "Le Bardo", "Le Kram", "Médina", "Séjoumi", "Sidi El Béchir", "Sidi Hassine"];
   public Zaghouan = ["Bir Mcherga", "El Fahs", "Nadhour", "Saouaf", "Zaghouan", "Zriba"];
   public villes = []
-  public type:string
-  public nom:string
-  public gouv:string
-  public ville:string
-  public codePostal:string
+  public type: string
+  public nom: string
+  public gouv: string
+  public ville: string
+  public codePostal: string
   public data: Array<UniteMedical>
+  public title:string
 
   constructor(
     private router: Router,
-    private uniteM: UniteMedical,
+    private toastController: ToastController,
+    private alert: AlertController,
     private uniteMedical: UniteMedicalService,
     private afDataBase: AngularFireDatabase,
   ) { }
 
   ngOnInit() {
-    //this.getData();
+    this.title="Ajout d'unité medicale"
+    // if (this.uniteMedical != null) {
+    //   this.getData();
+    // }
   }
-  async getData() {
-    const b = await this.afDataBase.list<UniteMedical>('Unité Medical').valueChanges()
-    b.forEach(y => {
-      this.data = y.filter((item) => {
-        return item.key == this.uniteMedical.getKey()
-      });
+  // async getData() {
+  //   const b = await this.afDataBase.list<UniteMedical>('Unité Medical').valueChanges()
+  //   b.forEach(y => {
+  //     this.data = y.filter((item) => {
+  //       return item.key == this.uniteMedical.getKey()
+  //     });
+  //   })
+  // }
+  async toastt(msg: string) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
+  }
+  async showAlert(header: string, message: string) {
+    const alert = await this.alert.create({
+      header,
+      message,
+      buttons: ["OK"]
     })
+    await alert.present()
   }
-  ajouter(){
-    this.uniteM.constructorS(this.type,this.nom,this.gouv,this.ville,this.codePostal)
-    console.log( this.uniteM.type)
-    console.log( this.uniteM.nom)
-    console.log( this.uniteM.gouv)
-    console.log( this.uniteM.ville)
-    console.log( this.uniteM.codePostal)
+  async ajouter() {
+    const key = this.afDataBase.list('Unité Medical').push({
+      type: this.type,
+      nom: this.nom,
+      title: "Unité Medical",
+      gouv: this.gouv,
+      ville: this.ville,
+      codePostal: this.codePostal
+    });
+    this.afDataBase.list('Unité Medical').update(key.key, {
+      key: key.key
+    })
   }
   onChange($event) {
     switch ($event.target.value) {
