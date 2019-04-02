@@ -33,6 +33,9 @@ export class UniteMedicalPage implements OnInit {
     })
     this.router.navigate(['/materiel'])
   }
+  ajouter(){
+    this.router.navigate(['/crud-unite-medical'])
+  }
   modifier(i){
     this.uniteMedical.setUniteMedical({
       uniteMedicalKey:i.key

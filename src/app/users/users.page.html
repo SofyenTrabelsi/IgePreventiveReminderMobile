@@ -1,16 +1,18 @@
 <ion-content>
   <ion-item-sliding *ngFor="let i of data">
+    <!--Admin-->
     <ion-item (click)="testClick()">
-      <ion-row class="row">
-        <h2>{{i.email}}</h2>
-      </ion-row>
-      <ion-row class="row">
-        <h5>{{i.pwd}}</h5>
-      </ion-row>
-      <ion-row class="row">
-        <!--Il faut tester s'il l'utilisateur a une unité medical ou nn, s'il n'avait il n'affiche pas la ligne suivante-->
-        <!--<p>{{i.uniteMedical.nom}} • {{i.uniteMedical.gouv}} • {{i.uniteMedical.ville}}</p>-->
-      </ion-row>
+      <ion-grid no-padding no-margin>
+        <ion-row style="font-size:20px;font-weight:bold">
+          {{i.email}}
+        </ion-row>
+        <ion-row style="font-size:16px">
+          {{i.pwd}}
+        </ion-row>
+        <ion-row class="row" *ngIf="i.type=='Utilisateur'">
+          <p>{{i.uniteMedical.nom}} • {{i.uniteMedical.gouv}} • {{i.uniteMedical.ville}}</p>
+        </ion-row>
+      </ion-grid>
     </ion-item>
     <ion-item-options side="end">
       <button ion-button color="primary" (click)="modifier(i)">

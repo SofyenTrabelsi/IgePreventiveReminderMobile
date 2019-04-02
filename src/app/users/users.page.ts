@@ -13,6 +13,7 @@ import { UniteMedical } from '../Entities/UniteMedical';
 export class UsersPage implements OnInit {
 
   public data: Utilisateur[]
+  public abc:"Utilisateur"
   constructor(
     private router: Router,
     private user: UserService,
@@ -27,6 +28,9 @@ export class UsersPage implements OnInit {
     b.forEach(y => {
       this.data = y
     })
+  }
+  ajouter(){
+    this.router.navigate(['/crud-user'])
   }
   modifier(i){
     this.user.setUser({

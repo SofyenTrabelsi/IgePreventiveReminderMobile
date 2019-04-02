@@ -1,15 +1,21 @@
 <ion-content>
   <ion-item-sliding *ngFor="let i of data">
     <ion-item (click)="comosants(i)">
-      <ion-row class="row">
-        <h2>{{i.nom}}</h2>
-      </ion-row>
-      <ion-row class="row">
-        <h5>{{i.type}}</h5>
-      </ion-row>
-      <ion-row class="row">
-        <p>{{i.gouv}} • {{i.ville}} • {{i.codePostal}}</p>
-      </ion-row>
+      <ion-grid no-padding no-margin>
+        <ion-row style="font-size:20px;font-weight:bold">
+          {{i.nom}}
+        </ion-row>
+        <ion-row style="font-size:16px">
+          {{i.type}}
+        </ion-row>
+        <ion-row>
+          <ion-col col-5>
+          </ion-col>
+          <ion-col style="font-size:14px">
+            <p>{{i.gouv}} • {{i.ville}} • {{i.codePostal}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
     <ion-item-options side="end">
       <button ion-button color="primary" (click)="modifier(i)">

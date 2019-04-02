@@ -31,6 +31,9 @@ export class MaterielPage implements OnInit {
       });
     })
   }
+  ajouter(){
+    this.router.navigate(['/crud-materiel'])
+  }
   modifier(i) {
     this.materiel.setMateriel({
       materielKey: i.key,

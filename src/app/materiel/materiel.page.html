@@ -1,32 +1,34 @@
 <ion-content>
-    <ion-item-sliding *ngFor="let i of data">
-      <ion-item (click)="comosants(i)">
-        <ion-row class="row">
-          <h2>{{i.type}}</h2>
+  <ion-item-sliding *ngFor="let i of data">
+    <ion-item (click)="comosants(i)">
+      <ion-grid no-padding no-margin>
+        <ion-row style="font-size:20px;font-weight:bold">
+          {{i.type}}
         </ion-row>
-        <ion-row class="row">
-          <h5>{{i.nom}}</h5>
+        <ion-row style="font-size:16px">
+          {{i.nom}}
         </ion-row>
-        <ion-row class="row">
+        <ion-row>
           <p>{{i.reference}} • {{i.dateMaintenance}}</p>
         </ion-row>
-      </ion-item>
-      <ion-item-options side="end">
-        <button ion-button color="primary" (click)="modifier(i)">
-          <ion-icon name="create"></ion-icon>
-          Modifier
-        </button>
-        <button ion-button color="danger" (click)="supprimer(i)">
-          <ion-icon name="trash"></ion-icon>
-          Supprimer
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-  
-    <ion-fab vertical="bottom" horizontal="end" color="primary">
-      <ion-fab-button (click)="ajouter()">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>&nbsp;
-  
-  </ion-content>
+      </ion-grid>
+    </ion-item>
+    <ion-item-options side="end">
+      <button ion-button color="primary" (click)="modifier(i)">
+        <ion-icon name="create"></ion-icon>
+        Modifier
+      </button>
+      <button ion-button color="danger" (click)="supprimer(i)">
+        <ion-icon name="trash"></ion-icon>
+        Supprimer
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+
+  <ion-fab vertical="bottom" horizontal="end" color="primary">
+    <ion-fab-button (click)="ajouter()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>&nbsp;
+
+</ion-content>
