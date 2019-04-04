@@ -2,6 +2,9 @@
   <ion-item-sliding *ngFor="let i of data">
     <!--Admin-->
     <ion-item (click)="testClick()">
+        <ion-avatar slot="start">
+            <img src="https://png.pngtree.com/svg/20161217/43a873f79c.svg">
+          </ion-avatar>
       <ion-grid no-padding no-margin>
         <ion-row style="font-size:20px;font-weight:bold">
           {{i.email}}
@@ -9,18 +12,20 @@
         <ion-row style="font-size:16px">
           {{i.pwd}}
         </ion-row>
-        <ion-row class="row" *ngIf="i.type=='Utilisateur'">
-          <p>{{i.uniteMedical.nom}} • {{i.uniteMedical.gouv}} • {{i.uniteMedical.ville}}</p>
+        <ion-row class="row" *ngIf="i.type=='Utilisateur'" >
+          <ion-col size="15">
+          {{i.uniteMedical.nom}} • {{i.uniteMedical.gouv}} • {{i.uniteMedical.ville}}
+        </ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
     <ion-item-options side="end">
       <button ion-button color="primary" (click)="modifier(i)">
-        <ion-icon name="create"></ion-icon>
+        <ion-icon name="create"  color="primary" ></ion-icon>
         Modifier
       </button>
       <button ion-button color="danger" (click)="supprimer(i)">
-        <ion-icon name="trash"></ion-icon>
+        <ion-icon name="trash"   color="danger"></ion-icon>
         Supprimer
       </button>
     </ion-item-options>

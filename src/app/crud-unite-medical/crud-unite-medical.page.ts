@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -52,6 +52,7 @@ export class CrudUniteMedicalPage implements OnInit {
   public codePostal: string
   public data: Array<UniteMedical>
   public title:string
+  public item:any
 
   constructor(
     private router: Router,
@@ -59,9 +60,14 @@ export class CrudUniteMedicalPage implements OnInit {
     private alert: AlertController,
     private uniteMedical: UniteMedicalService,
     private afDataBase: AngularFireDatabase,
+    private route:ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.item=this.route.snapshot.paramMap.get('id')
+    console.log(this.item.type)
+    this.item=this.route.snapshot.paramMap.get('i')
+    console.log(this.item)
     this.title="Ajout d'unité medicale"
     // if (this.uniteMedical != null) {
     //   this.getData();

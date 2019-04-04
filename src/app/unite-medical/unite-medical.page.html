@@ -1,29 +1,30 @@
 <ion-content>
   <ion-item-sliding *ngFor="let i of data">
     <ion-item (click)="comosants(i)">
+        <ion-avatar slot="end">
+            <img src="https://tmicontractors.com/wp-content/uploads/2018/02/hospital-icon.png">
+          </ion-avatar>
       <ion-grid no-padding no-margin>
-        <ion-row style="font-size:20px;font-weight:bold">
+        <ion-row style="font-size:20px;font-weight:bold" >
           {{i.nom}}
         </ion-row>
         <ion-row style="font-size:16px">
           {{i.type}}
         </ion-row>
         <ion-row>
-          <ion-col col-5>
-          </ion-col>
           <ion-col style="font-size:14px">
-            <p>{{i.gouv}} • {{i.ville}} • {{i.codePostal}}</p>
+            {{i.gouv}} • {{i.ville}} • {{i.codePostal}}
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
     <ion-item-options side="end">
       <button ion-button color="primary" (click)="modifier(i)">
-        <ion-icon name="create"></ion-icon>
+        <ion-icon name="create" color="primary" ></ion-icon>
         Modifier
       </button>
       <button ion-button color="danger" (click)="supprimer(i)">
-        <ion-icon name="trash"></ion-icon>
+        <ion-icon name="trash"  color="danger"></ion-icon>
         Supprimer
       </button>
     </ion-item-options>

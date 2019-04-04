@@ -11,7 +11,8 @@ import { UniteMedical } from '../Entities/UniteMedical';
 })
 export class UniteMedicalPage implements OnInit {
 
-  public data:  Array<UniteMedical>
+  public data: Array<UniteMedical>
+  public a: UniteMedical
   constructor(
     private router: Router,
     private uniteMedical: UniteMedicalService,
@@ -24,25 +25,26 @@ export class UniteMedicalPage implements OnInit {
   async getData() {
     const b = await this.afDataBase.list<UniteMedical>('Unité Medical').valueChanges()
     b.forEach(y => {
-      this.data=y
+      this.data = y
     })
   }
   comosants(i) {
     this.uniteMedical.setUniteMedical({
-      uniteMedicalKey:i.key
+      uniteMedicalKey: i.key
     })
     this.router.navigate(['/materiel'])
   }
-  ajouter(){
+  ajouter() {
     this.router.navigate(['/crud-unite-medical'])
   }
-  modifier(i){
+  modifier(i) {
     this.uniteMedical.setUniteMedical({
-      uniteMedicalKey:i.key
+      uniteMedicalKey: i.key
     })
-    this.router.navigate(['/crud-unite-medical'])
+    this.router.navigateByUrl(`/crud-unite-medical/i`);
+    this.router.navigate(['/crud-unite-medical',{item:i}])
   }
-  async supprimer(i){
+  async supprimer(i) {
     const b = await this.afDataBase.list('Unité Medical').remove(i.key)
     this.getData()
   }
