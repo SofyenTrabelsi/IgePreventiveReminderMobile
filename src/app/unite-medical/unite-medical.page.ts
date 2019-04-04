@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { UniteMedicalService } from '../unite-medical.service';
 import { UniteMedical } from '../Entities/UniteMedical';
@@ -28,21 +28,25 @@ export class UniteMedicalPage implements OnInit {
       this.data = y
     })
   }
-  comosants(i) {
+  composants(i) {
     this.uniteMedical.setUniteMedical({
       uniteMedicalKey: i.key
     })
     this.router.navigate(['/materiel'])
   }
   ajouter() {
-    this.router.navigate(['/crud-unite-medical'])
+    this.router.navigate(['/crud-unite-medical',{type:"1"}])
   }
   modifier(i) {
     this.uniteMedical.setUniteMedical({
       uniteMedicalKey: i.key
     })
-    this.router.navigateByUrl(`/crud-unite-medical/i`);
-    this.router.navigate(['/crud-unite-medical',{item:i}])
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        item:JSON.stringify(i)
+      }
+    }
+    this.router.navigate(['/crud-unite-medical',{type:"2"}], navigationExtras)
   }
   async supprimer(i) {
     const b = await this.afDataBase.list('Unité Medical').remove(i.key)

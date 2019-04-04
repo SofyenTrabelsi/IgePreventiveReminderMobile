@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -51,8 +51,10 @@ export class CrudUniteMedicalPage implements OnInit {
   public ville: string
   public codePostal: string
   public data: Array<UniteMedical>
-  public title:string
-  public item:any
+  public title: string
+  public btn: string
+  public item: UniteMedical
+  public a: string
 
   constructor(
     private router: Router,
@@ -60,15 +62,134 @@ export class CrudUniteMedicalPage implements OnInit {
     private alert: AlertController,
     private uniteMedical: UniteMedicalService,
     private afDataBase: AngularFireDatabase,
-    private route:ActivatedRoute
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.item=this.route.snapshot.paramMap.get('id')
-    console.log(this.item.type)
-    this.item=this.route.snapshot.paramMap.get('i')
-    console.log(this.item)
-    this.title="Ajout d'unité medicale"
+    this.a = this.route.snapshot.paramMap.get('type')
+    if (this.a == "1") {
+      this.type = ""
+      this.nom = ""
+      this.gouv = ""
+      this.ville = ""
+      this.codePostal = ""
+      this.title = "Ajout d'unité medicale"
+      this.btn = "Ajouter"
+    }
+    if (this.a == "2") {
+      this.route.queryParams.subscribe(params => {
+        this.item = JSON.parse(params.item)
+      })
+      this.type = this.item.type
+      this.nom = this.item.nom
+      this.gouv = this.item.gouv
+      this.ville = this.item.ville
+      this.codePostal = this.item.codePostal
+      switch (this.gouv) {
+        case "Ariana": {
+          this.villes = this.Ariana
+          break;
+        }
+        case "Béja": {
+          this.villes = this.Béja
+          break;
+        }
+        case "Ben Arous": {
+          this.villes = this.Ben_Arous
+          break;
+        }
+        case "Bizerte": {
+          this.villes = this.Bizerte
+          break;
+        }
+        case "Gabès": {
+          this.villes = this.Gabès
+          break;
+        }
+        case "Gafsa": {
+          this.villes = this.Gafsa
+          break;
+        }
+        case "Jendouba": {
+          this.villes = this.Jendouba
+          break;
+        }
+        case "Kairouan": {
+          this.villes = this.Kairouan
+          break;
+        }
+        case "Kasserine": {
+          this.villes = this.Kasserine
+          break;
+        }
+        case "Kébili": {
+          this.villes = this.Kébili
+          break;
+        }
+        case "Le Kef": {
+          this.villes = this.Le_Kef
+          break;
+        }
+        case "Mahdia": {
+          this.villes = this.Mahdia
+          break;
+        }
+        case "La Manouba": {
+          this.villes = this.La_Manouba
+          break;
+        }
+        case "Médenine": {
+          this.villes = this.Médenine
+          break;
+        }
+        case "Monastir": {
+          this.villes = this.Monastir
+          break;
+        }
+        case "Nabeul": {
+          this.villes = this.Nabeul
+          break;
+        }
+        case "Sfax": {
+          this.villes = this.Sfax
+          break;
+        }
+        case "Sidi Bouzid": {
+          this.villes = this.Sidi_Bouzid
+          break;
+        }
+        case "Siliana": {
+          this.villes = this.Siliana
+          break;
+        }
+        case "Sousse": {
+          this.villes = this.Sousse
+          break;
+        }
+        case "Tataouine": {
+          this.villes = this.Tataouine
+          break;
+        }
+        case "Tozeur": {
+          this.villes = this.Tozeur
+          break;
+        }
+        case "Tunis": {
+          this.villes = this.Tunis
+          break;
+        }
+        case "Zaghouan": {
+          this.villes = this.Zaghouan
+          break;
+        }
+        default: {
+          this.villes = []
+          break;
+        }
+      }
+      this.title = "Modification d'unité medicale"
+      this.btn = "Modifier"
+    }
     // if (this.uniteMedical != null) {
     //   this.getData();
     // }
@@ -97,17 +218,33 @@ export class CrudUniteMedicalPage implements OnInit {
     await alert.present()
   }
   async ajouter() {
-    const key = this.afDataBase.list('Unité Medical').push({
-      type: this.type,
-      nom: this.nom,
-      title: "Unité Medical",
-      gouv: this.gouv,
-      ville: this.ville,
-      codePostal: this.codePostal
-    });
-    this.afDataBase.list('Unité Medical').update(key.key, {
-      key: key.key
-    })
+    if (this.a == "1") {
+      const key = this.afDataBase.list('Unité Medical').push({
+        type: this.type,
+        nom: this.nom,
+        title: "Unité Medical",
+        gouv: this.gouv,
+        ville: this.ville,
+        codePostal: this.codePostal
+      });
+      this.afDataBase.list('Unité Medical').update(key.key, {
+        key: key.key
+      })
+    }
+    if (this.a == "2") {
+      //Modifier
+      const key = this.afDataBase.list('Unité Medical').update({
+        type: this.type,
+        nom: this.nom,
+        title: "Unité Medical",
+        gouv: this.gouv,
+        ville: this.ville,
+        codePostal: this.codePostal
+      });
+      this.afDataBase.list('Unité Medical').update(key.key, {
+        key: key.key
+      })
+    }
   }
   onChange($event) {
     switch ($event.target.value) {
@@ -209,7 +346,7 @@ export class CrudUniteMedicalPage implements OnInit {
       }
       default: {
         this.villes = []
-        break;
+        break
       }
     }
   }
