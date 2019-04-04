@@ -233,7 +233,7 @@ export class CrudUniteMedicalPage implements OnInit {
     }
     if (this.a == "2") {
       //Modifier
-      const key = this.afDataBase.list('Unité Medical').push({
+      this.afDataBase.list('Unité Medical').update(this.item.key, {
         type: this.type,
         nom: this.nom,
         title: "Unité Medical",
@@ -241,10 +241,8 @@ export class CrudUniteMedicalPage implements OnInit {
         ville: this.ville,
         codePostal: this.codePostal
       });
-      this.afDataBase.list('Unité Medical').update(key.key, {
-        key: key.key
-      })
     }
+    this.router.navigate(['/unite-medical'])
   }
   onChange($event) {
     switch ($event.target.value) {
