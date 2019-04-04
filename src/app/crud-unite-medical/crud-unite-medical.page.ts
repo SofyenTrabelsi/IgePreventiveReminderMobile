@@ -233,7 +233,7 @@ export class CrudUniteMedicalPage implements OnInit {
     }
     if (this.a == "2") {
       //Modifier
-      const key = this.afDataBase.list('Unité Medical').update({
+      const key = this.afDataBase.list('Unité Medical').push({
         type: this.type,
         nom: this.nom,
         title: "Unité Medical",
